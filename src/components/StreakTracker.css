@@ -1,0 +1,119 @@
+.streak-tracker {
+  background: linear-gradient(135deg, var(--card-bg) 0%, var(--accent-light) 100%);
+}
+
+.streak-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.streak-icon {
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.streak-info {
+  flex: 1;
+}
+
+.streak-count {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.streak-count .number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.streak-count .label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.streak-message {
+  margin: 0.25rem 0 0 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.today-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+}
+
+.today-status.done {
+  background: rgba(39, 174, 96, 0.15);
+  color: #27ae60;
+}
+
+.today-status.pending {
+  background: rgba(241, 196, 15, 0.15);
+  color: #f39c12;
+}
+
+.status-icon {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.status-text {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 0.15rem;
+}
+
+.week-dots {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.day-dot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.day-dot::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+.day-dot.filled::before {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.day-dot.today {
+  background: var(--accent-light);
+}
+
+.day-dot.today::before {
+  border-color: var(--accent);
+}
+
+.dot-day {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}

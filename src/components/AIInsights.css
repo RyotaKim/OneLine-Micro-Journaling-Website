@@ -1,0 +1,90 @@
+.ai-insights {
+  padding: 1.5rem;
+}
+
+.ai-insights .card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.beta-badge {
+  font-size: 0.65rem;
+  background: var(--accent);
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.insights-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0 0 1.5rem 0;
+}
+
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.insight-card {
+  padding: 1.25rem;
+  background: var(--accent-light);
+  border-radius: 12px;
+  border-left: 4px solid var(--accent);
+}
+
+.insight-card.mood {
+  border-left-color: #27ae60;
+}
+
+.insight-card.consistency {
+  border-left-color: #f39c12;
+}
+
+.insight-card.pattern {
+  border-left-color: #3498db;
+}
+
+.insight-card.words {
+  border-left-color: #9b59b6;
+}
+
+.insight-card.time {
+  border-left-color: #e74c3c;
+}
+
+.insight-card.tip {
+  border-left-color: var(--accent);
+}
+
+.insight-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.insight-text {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.insights-disclaimer {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--border);
+}
+
+.insights-disclaimer p {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin: 0;
+  text-align: center;
+}
