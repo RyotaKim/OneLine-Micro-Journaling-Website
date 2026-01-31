@@ -1,10 +1,12 @@
 import { useState } from 'react'
+import { useJournal } from '../context/JournalContext'
 import './Settings.css'
 
 export default function Settings({ onClose, hasSetPin, onPinSet }) {
   const [showResetConfirm, setShowResetConfirm] = useState(false)
   const [newPin, setNewPin] = useState('')
   const [isChangingPin, setIsChangingPin] = useState(false)
+  const { exportToCSV, exportToPDF, entries } = useJournal()
 
   const handleResetData = () => {
     localStorage.removeItem('journalEntries')
@@ -135,6 +137,40 @@ export default function Settings({ onClose, hasSetPin, onPinSet }) {
               Your entries are encrypted and stored locally on your device.
             </p>
             <p className="version">Version 1.0.0</p>
+          </div>
+
+          <div className="settings-section">
+            <h3>📤 Export Your Data</h3>
+            <p className="export-description">
+              Your data belongs to you. Download your journal entries anytime.
+            </p>
+            <div className="export-buttons">
+              <button 
+                className="export-btn"
+                onClick={exportToCSV}
+                disabled={entries.length === 0}
+              >
+                <span className="export-icon">📊</span>
+                <div className="export-text">
+                  <span className="export-label">Export CSV</span>
+                  <span className="export-hint">For spreadsheets</span>
+                </div>
+              </button>
+              <button 
+                className="export-btn"
+                onClick={exportToPDF}
+                disabled={entries.length === 0}
+              >
+                <span className="export-icon">📄</span>
+                <div className="export-text">
+                  <span className="export-label">Export PDF</span>
+                  <span className="export-hint">For printing</span>
+                </div>
+              </button>
+            </div>
+            {entries.length === 0 && (
+              <p className="export-empty">Start journaling to enable exports!</p>
+            )}
           </div>
         </div>
       </div>

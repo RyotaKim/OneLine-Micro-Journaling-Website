@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useJournal } from '../context/JournalContext'
 import MoodSelector from './MoodSelector'
 import './JournalInput.css'
@@ -12,6 +12,19 @@ export default function JournalInput() {
   const [showSuccess, setShowSuccess] = useState(false)
   const fileInputRef = useRef(null)
   const { addEntry } = useJournal()
+
+  // Scroll to newest entry after saving
+  const scrollToNewEntry = () => {
+    setTimeout(() => {
+      const entriesList = document.querySelector('.entries-list')
+      if (entriesList && entriesList.firstChild) {
+        entriesList.firstChild.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center' 
+        })
+      }
+    }, 100)
+  }
 
   const handlePhotoChange = (e) => {
     const file = e.target.files[0]
@@ -49,6 +62,9 @@ export default function JournalInput() {
     removePhoto()
     setIsSubmitting(false)
     setShowSuccess(true)
+    
+    // Scroll to the new entry
+    scrollToNewEntry()
     
     setTimeout(() => setShowSuccess(false), 2000)
   }

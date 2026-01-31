@@ -5,22 +5,20 @@ import StreakTracker from './StreakTracker'
 import OnThisDay from './OnThisDay'
 import RecentEntries from './RecentEntries'
 import MoodMap from './MoodMap'
-import ExportPanel from './ExportPanel'
 import AIInsights from './AIInsights'
 import ThemeSwitcher from './ThemeSwitcher'
 import Settings from './Settings'
 import './Dashboard.css'
 
 export default function Dashboard({ onLock, hasSetPin, onPinSet }) {
-  const [activeTab, setActiveTab] = useState('journal')
+  const [activeTab, setActiveTab] = useState('today')
   const [showSettings, setShowSettings] = useState(false)
 
   return (
     <div className="dashboard">
       <header className="dashboard-header">
         <div className="logo">
-          <span className="logo-icon">✏️</span>
-          <h1>OneLine</h1>
+          <img src="/oneline_logo.png" alt="OneLine" className="logo-image" />
         </div>
         <div className="header-actions">
           <ThemeSwitcher />
@@ -41,38 +39,39 @@ export default function Dashboard({ onLock, hasSetPin, onPinSet }) {
 
       <nav className="dashboard-nav">
         <button 
-          className={`nav-btn ${activeTab === 'journal' ? 'active' : ''}`}
-          onClick={() => setActiveTab('journal')}
+          className={`nav-btn ${activeTab === 'today' ? 'active' : ''}`}
+          onClick={() => setActiveTab('today')}
         >
-          ✏️ Journal
+          <span className="nav-label">Today</span>
         </button>
         <button 
           className={`nav-btn ${activeTab === 'memories' ? 'active' : ''}`}
           onClick={() => setActiveTab('memories')}
         >
-          📅 Memories
+          <span className="nav-icon">📅</span>
+          <span className="nav-label">Memories</span>
         </button>
         <button 
           className={`nav-btn ${activeTab === 'insights' ? 'active' : ''}`}
           onClick={() => setActiveTab('insights')}
         >
-          📊 Insights
+          <span className="nav-icon">📊</span>
+          <span className="nav-label">Insights</span>
         </button>
       </nav>
 
       <main className="dashboard-content">
-        {activeTab === 'journal' && (
-          <div className="journal-view">
-            <div className="main-column">
+        {activeTab === 'today' && (
+          <div className="today-view">
+            <div className="today-main">
               <StreakTracker />
               <DailyPrompt />
               <JournalInput />
+            </div>
+            <div className="today-sidebar">
+              <OnThisDay />
               <RecentEntries />
             </div>
-            <aside className="side-column">
-              <OnThisDay />
-              <ExportPanel />
-            </aside>
           </div>
         )}
 

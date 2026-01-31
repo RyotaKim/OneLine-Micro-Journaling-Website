@@ -1,9 +1,29 @@
+import { useState, useEffect } from 'react'
 import { useJournal } from '../context/JournalContext'
 import './OnThisDay.css'
+
+// Motivational messages for empty states
+const motivationalMessages = [
+  { emoji: '🌱', title: 'Seeds of memories', text: 'Every entry you write today becomes a treasure for tomorrow.' },
+  { emoji: '📝', title: 'Start your story', text: 'The best time to plant a tree was 20 years ago. The second best time is now.' },
+  { emoji: '✨', title: 'Future you will thank you', text: 'Imagine reading this moment a year from now.' },
+  { emoji: '🌟', title: 'You\'re building something beautiful', text: 'Each journal entry is a gift to your future self.' },
+  { emoji: '🎯', title: 'One line at a time', text: 'Small consistent actions create powerful memories.' },
+  { emoji: '💭', title: 'Capture the moment', text: 'Today\'s ordinary becomes tomorrow\'s precious memory.' },
+  { emoji: '🌈', title: 'Your journey matters', text: 'Every day has a story worth remembering.' },
+  { emoji: '📖', title: 'Write your chapter', text: 'This day is waiting to be documented.' }
+]
 
 export default function OnThisDay({ expanded = false }) {
   const { getOnThisDayEntries, entries } = useJournal()
   const onThisDayEntries = getOnThisDayEntries()
+  const [motivationalMessage, setMotivationalMessage] = useState(null)
+  
+  // Pick a random motivational message on mount
+  useEffect(() => {
+    const randomIndex = Math.floor(Math.random() * motivationalMessages.length)
+    setMotivationalMessage(motivationalMessages[randomIndex])
+  }, [])
   
   // Also get entries from one month ago
   const getOneMonthAgoEntries = () => {
@@ -44,9 +64,20 @@ export default function OnThisDay({ expanded = false }) {
       
       {!hasMemories ? (
         <div className="no-memories">
-          <span className="no-memories-icon">🌱</span>
-          <p>No memories yet for this day.</p>
-          <p className="hint">Keep journaling to build your memory collection!</p>
+          <div className="empty-state-illustration">
+            <span className="no-memories-icon">{motivationalMessage?.emoji || '🌱'}</span>
+            <div className="floating-elements">
+              <span className="float-element">✨</span>
+              <span className="float-element">📝</span>
+              <span className="float-element">💫</span>
+            </div>
+          </div>
+          <h4 className="empty-title">{motivationalMessage?.title || 'No memories yet'}</h4>
+          <p className="empty-message">{motivationalMessage?.text || 'Keep journaling to build your memory collection!'}</p>
+          <div className="empty-hint">
+            <span className="hint-icon">💡</span>
+            <p>Memories from this date will appear here next year!</p>
+          </div>
         </div>
       ) : (
         <div className="memories-list">

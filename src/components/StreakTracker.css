@@ -117,3 +117,70 @@
   color: var(--text-secondary);
   font-weight: 500;
 }
+
+/* Milestone celebration styles */
+.streak-tracker.milestone {
+  background: linear-gradient(135deg, var(--card-bg) 0%, var(--accent-light) 50%, rgba(241, 196, 15, 0.1) 100%);
+  border: 2px solid var(--accent);
+}
+
+.streak-icon.celebrating {
+  animation: celebrateIcon 1s ease-in-out infinite;
+}
+
+@keyframes celebrateIcon {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  25% { transform: scale(1.2) rotate(-10deg); }
+  50% { transform: scale(1.1) rotate(10deg); }
+  75% { transform: scale(1.2) rotate(-5deg); }
+}
+
+.milestone-number {
+  background: linear-gradient(135deg, var(--accent), #f1c40f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.3); }
+}
+
+.milestone-message {
+  font-weight: 600;
+  color: var(--accent) !important;
+}
+
+/* Confetti container */
+.confetti-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 10;
+  border-radius: 16px;
+}
+
+.confetti-particle {
+  position: absolute;
+  top: -10px;
+  border-radius: 2px;
+  animation: confettiFall linear forwards;
+  transform: rotate(0deg);
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(300px) rotate(720deg);
+    opacity: 0;
+  }
+}

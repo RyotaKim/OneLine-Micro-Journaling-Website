@@ -79,6 +79,7 @@ export default function RecentEntries({ showAll = false }) {
             <div 
               key={entry.id} 
               className="entry-item"
+              data-mood={entry.mood || ''}
               onClick={() => setSelectedEntry(entry)}
             >
               <div className="entry-header">
