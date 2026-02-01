@@ -2,6 +2,7 @@
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .mood-btn {
@@ -14,6 +15,8 @@
   cursor: pointer;
   transition: all 0.2s ease;
   color: var(--text-secondary);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .mood-btn:hover {

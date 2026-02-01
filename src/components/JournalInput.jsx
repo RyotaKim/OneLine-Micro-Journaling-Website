@@ -100,8 +100,9 @@ export default function JournalInput() {
         )}
 
         <div className="input-actions">
-          <div className="left-actions">
-            <MoodSelector selected={mood} onSelect={setMood} />
+          <MoodSelector selected={mood} onSelect={setMood} />
+          
+          <div className="action-buttons">
             <button 
               type="button" 
               className="photo-btn"
@@ -117,15 +118,15 @@ export default function JournalInput() {
               onChange={handlePhotoChange}
               className="hidden-input"
             />
+            
+            <button 
+              type="submit" 
+              className={`submit-btn ${isSubmitting ? 'submitting' : ''} ${showSuccess ? 'success' : ''}`}
+              disabled={!text.trim() || isSubmitting}
+            >
+              {showSuccess ? '✓ Saved!' : isSubmitting ? 'Saving...' : 'Save Entry'}
+            </button>
           </div>
-          
-          <button 
-            type="submit" 
-            className={`submit-btn ${isSubmitting ? 'submitting' : ''} ${showSuccess ? 'success' : ''}`}
-            disabled={!text.trim() || isSubmitting}
-          >
-            {showSuccess ? '✓ Saved!' : isSubmitting ? 'Saving...' : 'Save Entry'}
-          </button>
         </div>
       </form>
     </div>
