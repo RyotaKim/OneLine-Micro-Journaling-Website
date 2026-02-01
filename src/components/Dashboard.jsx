@@ -8,11 +8,13 @@ import MoodMap from './MoodMap'
 import AIInsights from './AIInsights'
 import ThemeSwitcher from './ThemeSwitcher'
 import Settings from './Settings'
+import UserGuide from './UserGuide'
 import './Dashboard.css'
 
 export default function Dashboard({ onLock, hasSetPin, onPinSet }) {
   const [activeTab, setActiveTab] = useState('today')
   const [showSettings, setShowSettings] = useState(false)
+  const [showGuide, setShowGuide] = useState(false)
 
   return (
     <div className="dashboard">
@@ -22,6 +24,13 @@ export default function Dashboard({ onLock, hasSetPin, onPinSet }) {
         </div>
         <div className="header-actions">
           <ThemeSwitcher />
+          <button 
+            className="icon-btn" 
+            onClick={() => setShowGuide(true)}
+            title="Help Guide"
+          >
+            ❓
+          </button>
           <button 
             className="icon-btn" 
             onClick={() => setShowSettings(true)}
@@ -97,6 +106,11 @@ export default function Dashboard({ onLock, hasSetPin, onPinSet }) {
           onPinSet={onPinSet}
         />
       )}
+
+      <UserGuide 
+        isOpen={showGuide}
+        onClose={() => setShowGuide(false)}
+      />
     </div>
   )
 }

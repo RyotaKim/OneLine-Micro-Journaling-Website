@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import Dashboard from './components/Dashboard'
 import LockScreen from './components/LockScreen'
+import UserGuide from './components/UserGuide'
 import { JournalProvider } from './context/JournalContext'
 import { ThemeProvider } from './context/ThemeContext'
 
@@ -13,6 +14,19 @@ function App() {
   const [hasSetPin, setHasSetPin] = useState(() => {
     return localStorage.getItem('journalPin') !== null
   })
+  const [showGuide, setShowGuide] = useState(false)
+
+  // Check if first-time user
+  useEffect(() => {
+    const hasSeenGuide = localStorage.getItem('hasSeenGuide')
+    if (!hasSeenGuide && !isLocked) {
+      // Show guide after a short delay for better UX
+      const timer = setTimeout(() => {
+        setShowGuide(true)
+      }, 500)
+      return () => clearTimeout(timer)
+    }
+  }, [isLocked])
 
   const handleUnlock = () => {
     setIsLocked(false)
@@ -40,6 +54,13 @@ function App() {
             />
           ) : (
             <Dashboard onLock={handleLock} hasSetPin={hasSetPin} onPinSet={handlePinSet} />
+          )}
+          
+          {!isLocked && (
+            <UserGuide 
+              isOpen={showGuide}
+              onClose={() => setShowGuide(false)}
+            />
           )}
         </div>
       </JournalProvider>

@@ -1,0 +1,218 @@
+.guide-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.guide-modal {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--border-color);
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.guide-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.guide-close:hover {
+  background: var(--hover-bg);
+  color: var(--text-primary);
+  transform: rotate(90deg);
+}
+
+.guide-content {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.guide-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.guide-description {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.guide-footer {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.guide-progress {
+  display: flex;
+  justify-contrem;
+  line-height: 1.6
+}
+
+.progress-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--text-tertiary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.progress-dot.active {
+  width: 24px;
+  border-radius: 5px;
+  background: var(--accent);
+}
+
+.progress-dot.completed {
+  background: var(--accent);
+  opacity: 0.5;
+}
+
+.progress-dot:hover {
+  transform: scale(1.2);
+}
+
+.guide-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.guide-btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.guide-btn-primary {
+  background: var(--accent);
+  color: white;
+  flex: 1;
+}
+
+.guide-btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+.guide-btn-secondary {
+  background: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.guide-btn-secondary:hover {
+  background: var(--border-color);
+}
+
+.guide-btn-link {
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 0.75rem 1rem;
+}
+
+.guide-btn-link:hover {
+  color: var(--text-primary);
+}
+
+.guide-step-counter {
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--text-tertiary);
+}
+
+/* Dark theme adjustments */
+[data-theme="dark"] .guide-modal {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive design */
+@media (max-width: 640px) {
+  .guide-modal {
+    padding: 2rem 1.5rem;
+    max-width: 95%;
+  }
+
+  .guide-content {
+    padding: 1.25rem 0.5rem;
+    min-height: 180px;
+  }
+
+  .guide-title {
+    font-size: 1.35rem;
+  }
+
+  .guide-description {
+    font-size: 0.95rem;
+  }
+
+  .guide-btn {
+    padding: 0.65rem 1.25rem;
+    font-size: 0.95rem;
+  }
+}
